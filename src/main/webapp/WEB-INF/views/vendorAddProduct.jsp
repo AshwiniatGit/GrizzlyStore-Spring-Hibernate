@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" %>
+    pageEncoding="ISO-8859-1" isELIgnored="false" %>
       <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
-    <title>Admin - Add Product
+    <title>Vendor - Add Product
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
@@ -41,7 +41,7 @@
         </li>
         <li class="nav-item">
           <span class="navbar-text">
-            Welcome, ${user.name} 
+            Welcome, ${employee.name} 
           </span>
         </li>
       </ul>
@@ -66,7 +66,7 @@
               <b>PROFILE
               </b>
             </span>
-            <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a href="" style="color:aliceblue">
                   <b>Edit
@@ -80,22 +80,22 @@
             <img src="images/profile-picture.png" alt="Profile Picture">
             <br>
             <br>
-            <b>
+            <b>${employee.name}
             </b>
             <br>
-            <br>
-            ID:
-            <br> ${user.userId} 
-            <br>
-            <br>
-            Designation:
-            <br>
-            ${user.designation}
+           
+            <span class="fa fa-star"></span>
+             ${employee.rating}
             <br>
             <br>
-            Office:
+            Contact:
             <br>
-            ${user.address}
+            ${employee.contactNumber}
+            <br>
+            <br>
+            Address:
+            <br>
+            ${employee.address}
           </center>
         </div>
         <div class="col-md-6">
@@ -136,8 +136,8 @@
                       </picture>
                     </div>
                     <div class="col-md-4">
-                      <form class= "mx-2 my-auto w-full00" action="adminAddProduct.html" method="POST">
-                        <input type="text" name="id" placeholder="Enter Product ID">
+                      <form class= "mx-2 my-auto w-full00" action="AddProductServlet" method="POST">
+                        <input type="text" name="productId" placeholder="Enter Product ID">
                         <select name="category">
                           <option value="Category">Category
                           </option>
@@ -150,8 +150,6 @@
                         <input type="text" name="name" placeholder="Name">
                         <input type="text" name="description" placeholder="Description">
                         <input type="text" name="price"  placeholder="Price ">
-                         <input type="text" name="rating"  placeholder="rating ">
-                          <input type="text" name="offer"  placeholder="offer ">
                         ${error}
                       
                     </div>

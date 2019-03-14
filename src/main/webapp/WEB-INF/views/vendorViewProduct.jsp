@@ -48,7 +48,7 @@
         </li>
         <li class="nav-item">
           <span class="navbar-text">
-            Welcome, ${user.name}
+            Welcome, ${userName}
            
           </span>
         </li>
@@ -84,26 +84,26 @@
             </ul>
           </nav>
           <br>
-          <center>
+         <center>
             <img src="images/profile-picture.png" alt="Profile Picture">
             <br>
             <br>
-            <b>${user.name} 
+            <b>${employee.name}
             </b>
             <br>
-            <br>
-            ID:
-            <br>${user.userId}
-            <br>
-            <br>
-            Designation:
-            <br>
-            ${user.designation}
+           
+            <span class="fa fa-star"></span>
+             ${employee.rating}
             <br>
             <br>
-            Office:
+            Contact:
             <br>
-            ${user.address}
+            ${employee.contactNumber}
+            <br>
+            <br>
+            Address:
+            <br>
+            ${employee.address}
           </center>
         </div>
         <div class="col-md-6">

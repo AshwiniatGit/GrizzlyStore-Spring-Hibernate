@@ -16,7 +16,7 @@ public class User {
 	private String contactNumber;
 	private String designation;
 	private String address;
-
+	private float rating;
 	
 	public User() {
 		super();
@@ -91,12 +91,21 @@ public class User {
 		return userStatus;
 	}
 
+	@Column
+	public float getRating() {
+		return rating;
+	}
+
+	public void setRating(float rating) {
+		this.rating = rating;
+	}
+
 	public void setUserStatus(int userStatus) {
 		this.userStatus = userStatus;
 	}
 
 	public User(String userId, String name, String password, String userType, int userStatus, String contactNumber,
-			String designation, String address) {
+			String designation, String address, float rating) {
 		super();
 		this.userId = userId;
 		this.name = name;
@@ -106,15 +115,17 @@ public class User {
 		this.contactNumber = contactNumber;
 		this.designation = designation;
 		this.address = address;
+		this.rating = rating;
 	}
 
 	@Override
 	public String toString() {
-		return "Login [userId=" + userId + ", name=" + name + ", password=" + password + ", userType=" + userType
+		return "User [userId=" + userId + ", name=" + name + ", password=" + password + ", userType=" + userType
 				+ ", userStatus=" + userStatus + ", contactNumber=" + contactNumber + ", designation=" + designation
-				+ ", address=" + address + "]";
+				+ ", address=" + address + ", rating=" + rating + "]";
 	}
 
+	
 	
 
 	

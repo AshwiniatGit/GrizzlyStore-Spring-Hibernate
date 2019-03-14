@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
-    <title>Admin - Product List
+    <title>Vendor - Product List
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
@@ -48,9 +48,6 @@
         <li class="nav-item">
           <span class="navbar-text">
             Welcome, ${user.name}
-            <c:if test="${empty user.userId}">
-    		 <jsp:forward page="index.html"></jsp:forward>
-			</c:if>
           </span>
         </li>
       </ul>
@@ -92,17 +89,17 @@
             <b>${user.name}
             </b>
             <br>
-            <br>
-            ID:
-            <br> ${user.userId}
-            <br>
-            <br>
-            Designation:
-            <br>
-            ${user.designation}
+           
+            <span class="fa fa-star"></span>
+             ${user.rating}
             <br>
             <br>
-            Office:
+            Contact:
+            <br>
+            ${user.contactNumber}
+            <br>
+            <br>
+            Address:
             <br>
             ${user.address}
           </center>
@@ -116,7 +113,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#menu1">VENDORS
+                <a class="nav-link" data-toggle="tab" href="#menu1">INVENTORY
                 </a>
               </li>
             </ul>
@@ -124,7 +121,7 @@
             <div class="tab-content">
               <div id="home" class="container tab-pane active">
                 <br>
-               <form action="showProductByCategory.html" method="POST">
+               <form action="ProductByCategory.html" method="POST">
                   <div class="container-fluid">
                     <div class="row">
                       <div class="col-md-3">
@@ -148,10 +145,10 @@
                       </div>
                       <div class="col-md-3">
                         <select class="form-control form-rounded"  name="formal" onchange="javascript:handleSelect(this)">
-                          <option value="ChooseAction">Sort By 
+                          <option value="ChooseAction">Sort By Rating
                           </option>
-                          <option value="sortByRating.html?order=LowToHigh">Low to High</option>
-                          <option value="sortByRating.html?order=HighToLow">High to Low</option>
+                          <option value="vendorSortByRating.html?order=LowToHigh">Low to High</option>
+                          <option value="vendorSortByRating.html?order=HighToLow">High to Low</option>
                         </select>
                       </div>
                       </form>
@@ -160,7 +157,7 @@
                         <div class="col-md-3">
                         </div>
                         <div class="col-md-9">
-                          <a href="adminAddProduct.html" class="btn btn-secondary form-rounded">Add Product
+                          <a href="vendorGetProductByCategory" class="btn btn-secondary form-rounded">Add Product
                           </a>
                         </div>
                       </div>
@@ -177,15 +174,35 @@
                               </td>
                           <td>
                             <center> 
-                              <span style="color: gray">Brand
+                              <span style="color: gray">ID
                               </span>
                               </td>
                           <td>
                             <center>
-                              <span style="color: gray">Category
+                              <span style="color: gray">InStock
                               </span>
                               </td>
                           <td>
+                            <center>
+                              <span style="color: gray">Requirement
+                              </span>
+                              </td>
+                           <td>
+                            <center>
+                              <span style="color: gray">Buffer
+                              </span>
+                              </td>
+                           <td>
+                            <center>
+                              <span style="color: gray">Price/Item
+                              </span>
+                              </td>
+                           <td>
+                            <center>
+                              <span style="color: gray">Pending
+                              </span>
+                              </td>
+                           <td>
                             <center>
                               <span style="color: gray">Rating
                               </span>
@@ -204,22 +221,146 @@
                             </div>    
                           </td>
                           <td>
+                          ${product.id}
+                          </td>
+                          <td>
+                           &nbsp;0
+                          </td>
+                          <td>
+                           &nbsp;0
+                          </td>
+                          <td>
+                            <span style="color: gray">&nbsp;0
+                            </span>
+                          </td>
+                          <td>
+                           ${product.price }
+                          </td>
+                          <td>
+                           &nbsp;0
+                          </td>
+                          <td>
+                           ${product.rating }
+                          </td>
+                          
+                          
+                          <td>
+                            <center>
+                              <a class="btn btn-secondary form-rounded" href="ViewProductServlet?id=${product.id }" width="50px"> &emsp;Manage&emsp; 
+                              </a>&emsp;&emsp;
+                            </center>
+                          </td>
+                        </tr>
+                       </c:forEach>
+                      </table>                                                                  
+                    </div>
+                  </div>
+                  </div>
+                  </div>
+                  <div id="menu1" class="container tab-pane fade">
+                    <br>
+                     <form action="ShowProductByCategoryServlet" method="POST">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <select class="form-control form-rounded" >
+                          <option value="ChooseAction">Choose Action
+                          </option>
+                        </select>
+                 
+                      </div> 
+                      <div class="col-md-3">
+                        <div class="input-group topnav1">
+                      
+                          <input type="text" name="categoryName" class="form-control border border-right-0 bg-light form-rounded" placeholder="Category Name">
+                          <span class="input-group-append">
+                            <button class="btn  border border-left-0  form-rounded" type="submit">
+                              <span class="fa fa-search">
+                              </span>
+                            </button>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <select class="form-control form-rounded"  name="formal" onchange="javascript:handleSelect(this)">
+                          <option value="ChooseAction">Sort By Rating
+                          </option>
+                          <option value="http://localhost:8020/FinalCheck-GrizzlyStore/SortByRatingServlet?order=LowToHigh">Low to High</option>
+                          <option value="http://localhost:8020/FinalCheck-GrizzlyStore/SortByRatingServlet?order=HighToLow">High to Low</option>
+                        </select>
+                      </div>
+                      </form>
+                    <div class="col-md-3">
+                      <div class="row">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-9">
+                          <a href="FetchCategoryServlet" class="btn btn-secondary form-rounded">Add Product
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container-fluid">
+                      <br>
+                      <table border="1" class="table table-bordered">
+                      
+                        <tr>
+                          <td>
+                            <center>
+                              <span style="color: gray">List
+                              </span>
+                              </td>
+                          <td>
+                            <center> 
+                              <span style="color: gray">ID
+                              </span>
+                              </td>
+                          <td>
+                            <center>
+                              <span style="color: gray">Brand
+                              </span>
+                              </td>
+                          <td>
+                            <center>
+                              <span style="color: gray">Category
+                              </span>
+                              </td>
+                           <td>
+                            <center>
+                              <span style="color: gray">Offer
+                              </span>
+                              </td>
+                          <td>
+                          </td>
+                        </tr>
+                      <c:forEach  var="product"  items= "${products}">
+                        <tr>
+                          <td>
+                            <div class="checkbox checkbox-info checkbox-circle">
+                              <input id="checkbox11" type="checkbox" checked="">
+                              <label for="checkbox11">
+                                ${product.name}
+                              </label>
+                            </div>    
+                          </td>
+                          <td>
+                          ${product.id}
+                          </td>
+                          <td>
                             ${product.brand}
                           </td>
                           <td>
                             ${product.category}
                           </td>
                           <td>
-                            <span style="color: gray">${product.rating}
+                            <span style="color: gray">${product.offer}
                             </span>
                           </td>
                           <td>
                             <center>
-                              <a class="btn btn-secondary form-rounded" href="adminViewProduct.html?id=${product.id }" width="50px"> &emsp;View&emsp; 
+                              <a class="btn btn-secondary form-rounded" href="ViewProductServlet?id=${product.id }" width="50px"> &emsp;View&emsp; 
                               </a>&emsp;&emsp;
-                              <a class="btn btn-secondary form-rounded" > &emsp;Block&emsp; 
-                              </a>&emsp;&emsp;
-                              <a class="btn btn-secondary form-rounded" href="adminDeleteProduct.html?id=${product.id }">&nbsp;Remove&nbsp; 
+                              <a class="btn btn-secondary form-rounded" href="DeleteProductServlet?id=${product.id }">&nbsp;Remove&nbsp; 
                               </a>
                             </center>
                           </td>
@@ -228,8 +369,7 @@
                       </table>                                                                  
                     </div>
                   </div>
-                  <div id="menu1" class="container tab-pane fade">
-                    
+                  </div>
                   </div>
                   </div>
               </div>          

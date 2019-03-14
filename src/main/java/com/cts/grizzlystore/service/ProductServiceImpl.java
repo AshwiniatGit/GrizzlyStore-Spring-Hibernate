@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService{
 
 	public Product findProduct(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return productDAO.findProduct(id);
 	}
 
 	public String deleteProduct(String productId) {
@@ -46,6 +46,18 @@ public class ProductServiceImpl implements ProductService{
 	public String updateProduct(Product product) {
 		// TODO Auto-generated method stub
 		return productDAO.updateProduct(product);
+	}
+
+	@Override
+	public List<Product> getProductByCategory(String category) {
+		// TODO Auto-generated method stub
+		return productDAO.getProductByCategory(category);
+	}
+
+	@Override
+	public List<Product> sortProductsByRating(String sorting) {
+		// TODO Auto-generated method stub
+		return productDAO.sortProductsByRating(sorting);
 	}
 
 }

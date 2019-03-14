@@ -9,6 +9,7 @@ public interface ProductService {
 	public List<Product> getAllProducts();
 	public Product findProduct(String id);
 	public String deleteProduct(String productId);
-	public List<Product> filterProducts(String query);
+	public List<Product> sortProductsByRating(String sorting);
 	public String updateProduct(Product product);
+	public List<Product> getProductByCategory(String category);
 }
